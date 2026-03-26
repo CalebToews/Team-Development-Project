@@ -1,5 +1,7 @@
 #include "main.h"
 
+// testing if can commit
+
 int main() {
 	std::srand(std::time(0)); // set seed for random numbers (needed for dice class)
 
