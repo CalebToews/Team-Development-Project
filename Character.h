@@ -15,4 +15,12 @@ public:
 
     int getAttackBonus() const;
     int getDodgeValue() const;
+
+    bool isWarrior() const;
+    bool isMage() const;
+    bool isRogue() const;
+
+    bool isValidClassType() const;
+
+    void displayCharacter() const;
 };
