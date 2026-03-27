@@ -8,10 +8,10 @@ private:
 
 public:
     Enemy();
-    Enemy(std::string name, std::string enemyType, int strength, int health, int armorClass);
+    Enemy(const std::string& name, const std::string& enemyType, int strength, int health, int armorClass);
 
     std::string getEnemyType() const;
-    void setEnemyType(std::string enemyType);
+    void setEnemyType(const std::string& enemyType);
 
     int getAttackPower() const;
     void displayEnemy() const;

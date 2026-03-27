@@ -1,11 +1,13 @@
 #include "Enemy.h"
 #include <iostream>
 
+constexpr int ATTACK_POWER_DIVISOR = 2;
+
 Enemy::Enemy() : Entity() {
     enemyType = "Goblin";
 }
 
-Enemy::Enemy(std::string name, std::string enemyType, int strength, int health, int armorClass)
+Enemy::Enemy(const std::string& name, const std::string& enemyType, int strength, int health, int armorClass)
     : Entity(name, strength, health, armorClass) {
     this->enemyType = enemyType;
 }
@@ -14,12 +16,12 @@ std::string Enemy::getEnemyType() const {
     return enemyType;
 }
 
-void Enemy::setEnemyType(std::string enemyType) {
+void Enemy::setEnemyType(const std::string& enemyType) {
     this->enemyType = enemyType;
 }
 
 int Enemy::getAttackPower() const {
-    return strength / 2;
+    return strength / ATTACK_POWER_DIVISOR;
 }
 
 void Enemy::displayEnemy() const {
