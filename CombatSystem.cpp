@@ -33,6 +33,7 @@ int CombatSystem::calculateDamage(int basePower, int roll) const {
 void CombatSystem::playerAttack(Character& player, Enemy& enemy, Dice& dice) {
     // Roll the dice for the player
     int roll = dice.role();
+    dice.animation(roll);
 
     // Get the player's attack bonus
     int attackBonus = player.getAttackBonus();
