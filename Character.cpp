@@ -58,7 +58,7 @@ bool Character::isValidClassType() const {
 
 void Character::displayCharacter() const {
     std::cout << "Player: " << getName() << std::endl;
-    std::cout << "Class: " << classType << std::endl;
+    std::cout << "Class: " << getClassType() << std::endl;
     std::cout << "HP: " << getHealth() << std::endl;
     std::cout << "Strength: " << getStrength() << std::endl;
     std::cout << "Armor Class: " << getArmorClass() << std::endl;

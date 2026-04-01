@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Dice.h"
 #include "Functions.h"
+#include "Character.h"
 #include "Entity.h"
 #include "Enemy.h"
 #include "Tree.h"

@@ -1,5 +1,4 @@
 #include "main.h"
-#include "Character.h"
 
 int main() {
     // Seed random number generator
