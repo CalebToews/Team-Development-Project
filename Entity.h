@@ -7,6 +7,7 @@ protected:
     int strength;
     int health;
     int armorClass;
+    int thac0;
 
 public:
     Entity();
@@ -24,4 +25,4 @@ public:
 
     void takeDamage(int damage);
     bool isAlive() const;
-};
+};    

@@ -15,4 +15,5 @@ public:
 
     int getAttackPower() const;
     void displayEnemy() const;
+    int getTHAC0() const;
 };
