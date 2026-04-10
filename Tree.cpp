@@ -1,4 +1,5 @@
 #include "Tree.h"
+#include "Functions.h"
 
 
 // function used to add a node to the tree map
@@ -43,9 +44,35 @@ void interaction(Tree* node) {
 		return;
 	}
 	if (node->message != "") {
-		std::cout << node->message << std::endl;
+		if (node->message.substr(0, 2) == "H ") { // used to heal
+			// using try to make sure that if a non integer value is after the H it will not break and give an error message instead
+			try {
+				int healthChange = std::stoi(node->message.substr(1));
+			}
+			catch (const std::invalid_argument& e) {
+				std::cerr << "Invalid health change value: " << node->message.substr(2) << std::endl;
+			}
+			catch (const std::out_of_range& e) {
+				std::cerr << "Health change value out of range: " << node->message.substr(2) << std::endl;
+			}
+		}
+		else if (node->message.substr(0, 2) == "D ") { // used to increase damage
+			// using try to make sure that if a non integer value is after the D it will not break and give an error message instead
+			try {
+				int damageChange = std::stoi(node->message.substr(1));
+			}
+			catch (const std::invalid_argument& e) {
+				std::cerr << "Invalid health change value: " << node->message.substr(2) << std::endl;
+			}
+			catch (const std::out_of_range& e) {
+				std::cerr << "Health change value out of range: " << node->message.substr(2) << std::endl;
+			}
+		}
+		// if the message does not heal or increase damage then it will print the message
+		else typePrint(node->message);
 	}
 	if (node->enemy != NULL) {
 		// interacting with enemys (battle system)
 	}
+	
 }

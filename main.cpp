@@ -17,5 +17,20 @@ int main() {
     std::cout << "===== PLAYER =====" << std::endl;
     player.displayCharacter();
 
+
+
+    // ----------------- basic game loop test
+    char userInput = 'r';
+    Tree* map = NULL;
+	mapBuild(&map);
+
+    while (true) {
+
+		interaction(map);
+		map = traverse(&map, userInput);
+
+    }
+
+
     return 0;
 }
