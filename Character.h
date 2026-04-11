@@ -27,4 +27,6 @@ public:
     bool isValidClassType() const;
 
     void displayCharacter() const;
+
+    static Character createFromConsole();
 };

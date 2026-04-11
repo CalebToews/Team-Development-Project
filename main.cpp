@@ -11,7 +11,7 @@ int main() {
     std::cout << "===== GAME START =====\n" << std::endl;
 
     // ===== TEST CHARACTER =====
-    Character player("Arin", "Warrior", 10, 30, 12);
+    Character player = Character::createFromConsole();
 
     // Display player info
     std::cout << "===== PLAYER =====" << std::endl;
