@@ -1,5 +1,6 @@
 #pragma once
 #include "Enemy.h"
+#include "Character.h"
 #include <iostream>
 
 struct Tree {
@@ -15,4 +16,4 @@ Tree* traverse(Tree** node); // use if the next node is not either left or right
 
 Tree* traverse(Tree** node, char direction);
 
-void interaction(Tree* node);
+void interaction(Tree* node, Character& player);

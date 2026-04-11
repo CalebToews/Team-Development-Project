@@ -26,7 +26,7 @@ int main() {
 
     while (true) {
 
-		interaction(map);
+        interaction(map, player);
 		map = traverse(&map, userInput);
 
     }

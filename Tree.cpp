@@ -1,6 +1,7 @@
 #include "Tree.h"
 #include "Functions.h"
-
+#include "CombatSystem.h"
+#include "Dice.h"
 
 // function used to add a node to the tree map
 void insert(Tree** node, std::string message, Enemy* enemy) {
@@ -39,7 +40,7 @@ Tree* traverse(Tree** node, char direction) {
 }
 
 // function that displays messages and can start battles with enemys
-void interaction(Tree* node) {
+void interaction(Tree* node, Character& player) {
 	if (node == NULL) {
 		return;
 	}
@@ -72,7 +73,16 @@ void interaction(Tree* node) {
 		else typePrint(node->message);
 	}
 	if (node->enemy != NULL) {
-		// interacting with enemys (battle system)
+		std::cout << "\nAn enemy appears: " << node->enemy->getName() << "!" << std::endl;
+
+		Dice d20(20);
+		CombatSystem combat;
+
+		bool playerWon = combat.runCombat(player, *node->enemy, d20);
+
+		if (!playerWon) {
+			std::cout << "\nGame Over!" << std::endl;
+		}
 	}
 	
 }
