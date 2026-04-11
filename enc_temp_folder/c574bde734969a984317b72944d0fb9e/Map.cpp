@@ -24,9 +24,7 @@ void mapBuild(Tree** root) {
 	insert(&temp->left->left->left->left, "H 10"); // used to heal the player by 10 health points, the interaction function will check for this and heal the player accordingly)
 	insert(&temp->left->left->right, "You think the elderly man talks too much so you decide to decline his offer and sleep outside his house on a bench.\nThe man decides to give you blankets anyway.");
 
-	insert(&temp->left->left->left->left->left,
-		"Next morning the elderly man gives you a compass so you don't lose your way again. \nLater that morning you overhear 2 villagers speaking of a Dungeon to the south that contains ancient artifacts guarded by a DRAGON. You decide to go check it out.",
-		new Dragon());
+	insert(&temp->left->left->left->left->left, "Next morning the elderly man gives you a compass so you don't lose your way again. \nLater that morning you overhear 2 villagers speaking of a Dungeon to the south that contains ancient artifacts guarded by a goblin. You decide to go check it out.");
 	temp->left->left->right->left = temp->left->left->left->left->left; // both paths lead to the same place
 
 	// ----- FIRST CHOICE RIGHT PATH ----- (ignore thief)
