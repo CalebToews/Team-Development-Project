@@ -8,6 +8,7 @@ private:
 
 public:
     Enemy();
+    virtual ~Enemy() = default;
     Enemy(const std::string& name, const std::string& enemyType, int strength, int health, int armorClass);
 
     std::string getEnemyType() const;

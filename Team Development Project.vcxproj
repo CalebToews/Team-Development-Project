@@ -126,22 +126,28 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Combat.cpp" />
     <ClCompile Include="Dice.cpp" />
+    <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Functions.cpp" />
+    <ClCompile Include="Goblin.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map.cpp" />
+    <ClCompile Include="Orc.cpp" />
     <ClCompile Include="Tree.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Character.h" />
     <ClInclude Include="Combat.h" />
     <ClInclude Include="Dice.h" />
+    <ClInclude Include="Dragon.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Functions.h" />
+    <ClInclude Include="Goblin.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Map.h" />
+    <ClInclude Include="orc.h" />
     <ClInclude Include="Tree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
