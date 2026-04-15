@@ -1,5 +1,19 @@
 #include "Functions.h"
 
+char getUserInput() {
+	char input;
+	std::string validInputs = "lryn";
+	do {
+		std::cin >> input;
+		if (std::cin.fail() || validInputs.find(input) == std::string::npos) {
+			std::cout << "Invalid input. Please one of the specified characters." << std::endl;
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+	} while (std::cin.fail() || validInputs.find(input) == std::string::npos);
+	return input;
+}
+
 void sleepSec(int time) {
 	std::this_thread::sleep_for(std::chrono::seconds(time));
 }

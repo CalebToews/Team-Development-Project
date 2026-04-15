@@ -6,6 +6,8 @@
 #include <ctime>
 #include <iostream>
 
+char getUserInput();
+
 void sleepSec(int time);
 void sleepMil(int time);
 

@@ -17,18 +17,40 @@ int main() {
     std::cout << "===== PLAYER =====" << std::endl;
     player.displayCharacter();
 
-
+	// Get user input to start the game
+	std::cout << "\nPress Enter to start the game...";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // clear buffer
+    std::cin.get();
 
     // ----------------- basic game loop test
-    char userInput = 'r';
+
+    char userInput;
+	int directionCount = 0;
     Tree* map = NULL;
 	mapBuild(&map);
 
     while (true) {
-
+        clear();
         interaction(map, player);
-		map = traverse(&map, userInput);
+        directionCount = directionCheck(map);
+        if (!player.isAlive()) {
+            std::cout << "You have died. Game Over." << std::endl;
+            break;
+        }
+        
+        if (directionCount == 2) {
+            userInput = getUserInput();
+            map = traverse(&map, userInput);
+        }
+        else if (directionCount == 1) {
+			map = traverse(&map);
+        }
+        else {
+            typePrint("You have reached the end of the map, Congrats");
+            break;
+        }
 
+        
     }
 
 

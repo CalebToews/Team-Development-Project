@@ -12,6 +12,8 @@ struct Tree {
 
 void insert(Tree** node, std::string data, Enemy* enemy = NULL);
 
+int directionCheck(Tree* node);
+
 Tree* traverse(Tree** node); // use if the next node is not either left or right
 
 Tree* traverse(Tree** node, char direction);

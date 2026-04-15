@@ -2,6 +2,7 @@
 #include "Functions.h"
 #include "CombatSystem.h"
 #include "Dice.h"
+#include "Character.h"
 
 // function used to add a node to the tree map
 void insert(Tree** node, std::string message, Enemy* enemy) {
@@ -13,6 +14,18 @@ void insert(Tree** node, std::string message, Enemy* enemy) {
 		(*node)->right = NULL;
 	}
 	return;
+}
+
+// checks how many paths there are
+int directionCheck(Tree* node) {
+	int sum = 0;
+	if (node->left != NULL) {
+		sum++;
+	}
+	if (node->right != NULL) {
+		sum++;
+	}
+	return sum;
 }
 
 // function to move down a path if there is no choice
@@ -30,10 +43,13 @@ Tree* traverse(Tree** node) {
 
 // function to choose which direction will be taken
 Tree* traverse(Tree** node, char direction) {
-	if (direction == 'l') {
+	if ((*node)->left == NULL || (*node)->right == NULL) {
+		return NULL;
+	}
+	if (direction == 'l' || direction == 'y') {
 		return (*node)->left;
 	}
-	else if (direction == 'r') {
+	else if (direction == 'r' || direction == 'n') {
 		return (*node)->right;
 	}
 	return *node;
@@ -49,6 +65,8 @@ void interaction(Tree* node, Character& player) {
 			// using try to make sure that if a non integer value is after the H it will not break and give an error message instead
 			try {
 				int healthChange = std::stoi(node->message.substr(1));
+				player.setHealth(player.getHealth() + healthChange);
+				
 			}
 			catch (const std::invalid_argument& e) {
 				std::cerr << "Invalid health change value: " << node->message.substr(2) << std::endl;
@@ -61,12 +79,13 @@ void interaction(Tree* node, Character& player) {
 			// using try to make sure that if a non integer value is after the D it will not break and give an error message instead
 			try {
 				int damageChange = std::stoi(node->message.substr(1));
+				player.setStrength(player.getStrength() + damageChange);
 			}
 			catch (const std::invalid_argument& e) {
-				std::cerr << "Invalid health change value: " << node->message.substr(2) << std::endl;
+				std::cerr << "Invalid damage change value: " << node->message.substr(2) << std::endl;
 			}
 			catch (const std::out_of_range& e) {
-				std::cerr << "Health change value out of range: " << node->message.substr(2) << std::endl;
+				std::cerr << "Damage change value out of range: " << node->message.substr(2) << std::endl;
 			}
 		}
 		// if the message does not heal or increase damage then it will print the message
