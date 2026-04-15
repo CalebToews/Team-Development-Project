@@ -34,9 +34,9 @@ int inclusiveRand(int min, int max) {
 void typePrint(std::string message) {
 	for (char c : message) {
 		std::cout << c;
-		std::this_thread::sleep_for(std::chrono::milliseconds(50)); // Adjust typing speed here
+		sleepMil(25); // Adjust typing speed here
 		if (c == '\n') {
-			std::this_thread::sleep_for(std::chrono::milliseconds(500)); // Pause longer at newlines
+			sleepMil(500); // Pause longer at newlines
 		}
 	}
 	std::cout << std::endl; // Move to the next line after printing the message

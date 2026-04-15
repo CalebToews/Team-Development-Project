@@ -9,4 +9,4 @@ bool attackHits(int thac0, int armorClass);
 int calculateDamage(int strength);
 
 
-void startCombat(Entity & player, Enemy & enemy, int playerTHAC0);
+bool startCombat(Entity & player, Enemy & enemy, int playerTHAC0);

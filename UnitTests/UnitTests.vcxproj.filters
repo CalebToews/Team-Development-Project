@@ -21,13 +21,7 @@
     <ClCompile Include="pch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Functions.cpp">
+    <ClCompile Include="DiceTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -1,6 +1,7 @@
 #include "Tree.h"
 #include "Functions.h"
 #include "CombatSystem.h"
+#include "Combat.h"
 #include "Dice.h"
 #include "Character.h"
 
@@ -95,9 +96,9 @@ void interaction(Tree* node, Character& player) {
 		std::cout << "\nAn enemy appears: " << node->enemy->getName() << "!" << std::endl;
 
 		Dice d20(20);
-		CombatSystem combat;
+		//CombatSystem combat;
 
-		bool playerWon = combat.runCombat(player, *node->enemy, d20);
+		bool playerWon = startCombat(player, *node->enemy, 10);
 
 		if (!playerWon) {
 			std::cout << "\nGame Over!" << std::endl;

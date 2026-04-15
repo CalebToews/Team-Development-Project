@@ -18,7 +18,7 @@ int calculateDamage(int strength) {
 }
 
 
-void startCombat(Entity& player, Enemy& enemy, int playerTHAC0) {
+bool startCombat(Entity& player, Enemy& enemy, int playerTHAC0) {
 
     std::cout << "\n=== COMBAT START ===\n";
     std::cout << player.getName() << " vs " << enemy.getName() << "\n";
@@ -99,8 +99,10 @@ void startCombat(Entity& player, Enemy& enemy, int playerTHAC0) {
 
     if (player.isAlive()) {
         std::cout << "\nYou defeated " << enemy.getName() << "!\n";
+		return true;
     }
     else {
         std::cout << "\nYou were defeated...\n";
+        return false;
     }
 }

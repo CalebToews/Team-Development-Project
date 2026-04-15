@@ -74,7 +74,7 @@ void Character::displayCharacter() const {
 Character Character::createFromConsole() {
     std::string name;
     std::string classType;
-    int choice;
+    char choice;
 
     // --- Name input ---
     std::cout << "Enter your character's name: ";
@@ -89,9 +89,9 @@ Character Character::createFromConsole() {
 
     while (true) {
         std::cin >> choice;
-        if (choice == 1) { classType = "Warrior"; break; }
-        else if (choice == 2) { classType = "Mage";    break; }
-        else if (choice == 3) { classType = "Rogue";   break; }
+        if (choice == '1') { classType = "Warrior"; break; }
+        else if (choice == '2') { classType = "Mage";    break; }
+        else if (choice == '3') { classType = "Rogue";   break; }
         else std::cout << "Invalid choice. Enter 1, 2, or 3: ";
     }
 

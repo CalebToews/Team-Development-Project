@@ -30,22 +30,29 @@ int main() {
 	mapBuild(&map);
 
     while (true) {
+        // clears screen
         clear();
+        // displays messages and starts battles + other interactions
         interaction(map, player);
-        directionCount = directionCheck(map);
+
+        // make sure the player is still alive after interactions
         if (!player.isAlive()) {
             std::cout << "You have died. Game Over." << std::endl;
             break;
         }
-        
-        if (directionCount == 2) {
+
+		// checks how many directions there are (2 = choice, 1 = no choice, 0 = end of map)
+        directionCount = directionCheck(map);
+
+        if (directionCount == 2) { // 2 = choice
             userInput = getUserInput();
             map = traverse(&map, userInput);
         }
-        else if (directionCount == 1) {
+		else if (directionCount == 1) { // 1 = no choice
+			sleepSec(2);
 			map = traverse(&map);
         }
-        else {
+		else { // 0 = end of map
             typePrint("You have reached the end of the map, Congrats");
             break;
         }
