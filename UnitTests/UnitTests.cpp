@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "../Character.h"
+#include "Character.h" 
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
