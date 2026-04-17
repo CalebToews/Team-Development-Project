@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "Character.h"
+#include "../Character.h"
 #include "../Enemy.h"
 #include "../Goblin.h"
 #include "../Orc.h"
