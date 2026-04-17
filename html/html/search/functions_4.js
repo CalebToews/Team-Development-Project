@@ -1,0 +1,17 @@
+var searchData=
+[
+  ['getarmorclass_0',['getArmorClass',['../class_entity.html#a0057b2fc77fefd6d87d98fe121ac4d21',1,'Entity']]],
+  ['getattackbonus_1',['getAttackBonus',['../class_character.html#a5d31d79ef0bc5d92cf61076a33a67858',1,'Character']]],
+  ['getattackpower_2',['getAttackPower',['../class_enemy.html#a4c878f794a9ead21ad5e597be4337292',1,'Enemy']]],
+  ['getclasstype_3',['getClassType',['../class_character.html#a7d5354b7a0a3559e8f63aaf8d7c4e226',1,'Character']]],
+  ['getdodgevalue_4',['getDodgeValue',['../class_character.html#a7d9902b66d47f1c3e1eb71e7f0e8baa5',1,'Character']]],
+  ['getenemytype_5',['getEnemyType',['../class_enemy.html#a905004c52dd335aa8329393cca0737c1',1,'Enemy']]],
+  ['gethealth_6',['getHealth',['../class_entity.html#a56685d307e693f83149ec1fd47ce6cff',1,'Entity']]],
+  ['getname_7',['getName',['../class_entity.html#a403f69eb888da7c5a690b79c658cdf47',1,'Entity']]],
+  ['getsides_8',['getSides',['../class_dice.html#af18ffbed87a3ffa3e810d7524623cc00',1,'Dice']]],
+  ['getstrength_9',['getStrength',['../class_entity.html#a3933380deeac6b530e622832764c17a0',1,'Entity']]],
+  ['getthac0_10',['getTHAC0',['../class_enemy.html#ae1ba455742081bf0744cb576ff37737c',1,'Enemy']]],
+  ['gettraits_11',['getTraits',['../class_character.html#af2c29e7cd1479e2ca316de8cc68d171d',1,'Character']]],
+  ['getuserinput_12',['getUserInput',['../_functions_8cpp.html#a160d0a48f714f9fd14ded4ac36a282d8',1,'getUserInput():&#160;Functions.cpp'],['../_functions_8h.html#a160d0a48f714f9fd14ded4ac36a282d8',1,'getUserInput():&#160;Functions.cpp']]],
+  ['goblin_13',['Goblin',['../class_goblin.html#a22d43a81f99697e13d13a0c56fae9bc4',1,'Goblin']]]
+];
