@@ -95,5 +95,8 @@
     <ClInclude Include="CombatSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Traits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

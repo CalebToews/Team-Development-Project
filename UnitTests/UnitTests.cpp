@@ -1,12 +1,12 @@
 #include "pch.h"
 #include "CppUnitTest.h"
 #include "Character.h"
-#include "Enemy.h"
-#include "Goblin.h"
-#include "Orc.h"
-#include "Dragon.h"
-#include "CombatSystem.h"
-#include "Dice.h"
+#include "../Enemy.h"
+#include "../Goblin.h"
+#include "../Orc.h"
+#include "../Dragon.h"
+#include "../CombatSystem.h"
+#include "../Dice.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
