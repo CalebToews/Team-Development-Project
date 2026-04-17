@@ -7,38 +7,55 @@
 
 // this is where the map will be build (the tree structure will be setup)
 void mapBuild(Tree** root) {
-	std::cout << "Map Build / Tree Setup" << std::endl;
 
 	Tree* temp = *root;
 
-	insert(&temp, "You woke up in a forest near a town with a headache. You can't remember where you are or how you got here. \n \nYou start walkinig towards the town and on they way see an elderly man being attacked by a goblin. Do you defend the elderly man\nInput yes or no (y or n): ");
-	
-	// ----- FIRST CHOICE LEFT PATH ----- (ATTACK GOBLIN)
-	insert(&temp->left, "You decide to attack the goblin", new Goblin());
+	// ROOT NODE
+	insert(&temp, "You woke up in a forest near a town with a headache. You can't remember where you are or how you got here.\n\nYou start walking towards the town and on the way see an elderly man being attacked by a goblin. Do you defend the elderly man?\nInput yes or no (y or n): ");
 
-	insert(&temp->left->left, "For helping the elderly man, he offerse you a place to sleep in his village. \nDo you accept his offer? (y or n): ");
+	// ===== LEFT PATH ===== (defend the old man)
+	insert(&temp->left, "You decide to attack the goblin!", new Goblin());
 
-		// ----- SECOND CHOICE LEFT PATH ----- (accept and decline lead to same place)
+	insert(&temp->left->left, "For helping the elderly man, he offers you a place to sleep in his village.\nDo you accept his offer? (y or n): ");
 
-	insert(&temp->left->left->left, "You accept the offer and sleep in the man's house. \n +10 Heatlh");
-	insert(&temp->left->left->left->left, "H 10"); // used to heal the player by 10 health points, the interaction function will check for this and heal the player accordingly)
-	insert(&temp->left->left->right, "You think the elderly man talks too much so you decide to decline his offer and sleep outside his house on a bench.\nThe man decides to give you blankets anyway.");
+	// Accept offer
+	insert(&temp->left->left->left, "You accept the offer and sleep in the man's house.");
+	insert(&temp->left->left->left->left, "H 10"); // +10 health
 
+	// Decline offer
+	insert(&temp->left->left->right, "You think the elderly man talks too much so you decide to decline his offer and sleep outside on a bench.\nThe man gives you blankets anyway.");
+
+	// Both paths converge to Dragon dungeon
 	insert(&temp->left->left->left->left->left,
-		"Next morning the elderly man gives you a compass so you don't lose your way again. \nLater that morning you overhear 2 villagers speaking of a Dungeon to the south that contains ancient artifacts guarded by a DRAGON. You decide to go check it out.",
+		"Next morning the elderly man gives you a compass.\nLater you overhear villagers speaking of a Dungeon to the south guarded by a DRAGON. You decide to check it out.",
 		new Dragon());
-	temp->left->left->right->left = temp->left->left->left->left->left; // both paths lead to the same place
+	temp->left->left->right->left = temp->left->left->left->left->left;
 
-	// ----- FIRST CHOICE RIGHT PATH ----- (ignore goblin)
+	// Dragon ending
+	insert(&temp->left->left->left->left->left->left,
+		"You defeated the Dragon and claimed the ancient artifacts! The village celebrates you as a hero.\n\n===== YOU WIN! =====");
 
-	insert(&temp->right, "You decide to ignore the goblin.\nYou walk into a nearby Town. You are shunned by villagers. But later approached by a strange man that offers you a place in his Rebel group.\nDo you accept his offer. (y or n):");
+	// ===== RIGHT PATH ===== (ignore goblin)
+	insert(&temp->right, "You decide to ignore the goblin.\nYou walk into a nearby Town. You are shunned by villagers, but later approached by a strange man who offers you a place in his Rebel group.\nDo you accept his offer? (y or n):");
 
-	insert(&temp->right->left, "You accept his offer and join the Rebel group.\nThe man hands you a stone dagger and brings your to his camp to rest for the night.\n(+5 damage from dagger) (+5 health from rest).\n\nThe next day the Rebal Leader announces that he needs volentears to raid a dungeon.\nYou however do not get a choice because you are new.");
+	// Accept rebel offer
+	insert(&temp->right->left, "You accept his offer and join the Rebel group.\nThe man hands you a stone dagger and brings you to his camp to rest.");
+	insert(&temp->right->left->left, "D 5"); // +5 damage from dagger
+	insert(&temp->right->left->left->left, "H 5"); // +5 health from rest
+	insert(&temp->right->left->left->left->left,
+		"The next day the Rebel Leader announces a dungeon raid. As the newest member, you have no choice but to go.\nYou enter the dungeon and encounter a fearsome Orc!",
+		new Orc());
+	insert(&temp->right->left->left->left->left->left,
+		"You defeated the Orc and claimed the dungeon treasure for the Rebel group!\nYour reputation grows and you are welcomed as a true member.\n\n===== YOU WIN! =====");
 
-	insert(&temp->right->right, "The rebal pushes you and you take 1 hp from emotion damage.\n(-1 Health)\n\nNight is approching so you decide to rest in an abandoned building outside the the village.\n(-2 health from getting a pour sleep.\n In the morning the rebal leader finds you sleeping in his childhood home and sends his encaged orc attacks you.", new Orc());
+	// Decline rebel offer
+	insert(&temp->right->right, "The rebel pushes you.\nNight is approaching so you rest in an abandoned building.");
+	insert(&temp->right->right->left, "H -2"); // -2 health from poor sleep
+	insert(&temp->right->right->left->left,
+		"In the morning the rebel leader finds you sleeping in his childhood home and sends his enraged Orc to attack you!",
+		new Orc());
+	insert(&temp->right->right->left->left->left,
+		"You defeated the Orc! The rebel leader, impressed by your strength, offers you a place in the group.\nYou accept and together raid the dungeon for glory.\n\n===== YOU WIN! =====");
 
-	insert(&temp->right->right->left, "After defeating the rebel leader's orc you take over his group. The group tells you about a dungeons that has been found and that they think they should check it out.");
-		
 	*root = temp;
-
 }
