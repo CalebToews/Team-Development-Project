@@ -1,11 +1,17 @@
 #include "pch.h"
 #include "CppUnitTest.h"
-#include "Character.h" 
+#include "Character.h"
+#include "Enemy.h"
+#include "Goblin.h"
+#include "Orc.h"
+#include "Dragon.h"
+#include "CombatSystem.h"
+#include "Dice.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 // =============================================
-// CHARACTER TESTS - Kristen
+// CHARACTER TESTS - Ngoc Thanh Thi Nguyen
 // =============================================
 namespace CharacterTests
 {
@@ -154,4 +160,178 @@ namespace CharacterTests
     };
 }
 
+// =============================================
+// MONSTER TESTS
+// =============================================
+namespace MonsterTests
+{
+    TEST_CLASS(GoblinTests)
+    {
+    public:
+        TEST_METHOD(Goblin_NameIsGoblin)
+        {
+            Goblin g;
+            Assert::AreEqual(std::string("Goblin"), g.getName());
+        }
+        TEST_METHOD(Goblin_HPIsCorrect)
+        {
+            Goblin g;
+            Assert::AreEqual(15, g.getHealth());
+        }
+        TEST_METHOD(Goblin_StrengthIsCorrect)
+        {
+            Goblin g;
+            Assert::AreEqual(6, g.getStrength());
+        }
+        TEST_METHOD(Goblin_IsAlive)
+        {
+            Goblin g;
+            Assert::IsTrue(g.isAlive());
+        }
+        TEST_METHOD(Goblin_TakeDamage)
+        {
+            Goblin g;
+            g.takeDamage(5);
+            Assert::AreEqual(10, g.getHealth());
+        }
+        TEST_METHOD(Goblin_IsDeadAfterFatalDamage)
+        {
+            Goblin g;
+            g.takeDamage(15);
+            Assert::IsFalse(g.isAlive());
+        }
+    };
 
+    TEST_CLASS(OrcTests)
+    {
+    public:
+        TEST_METHOD(Orc_NameIsOrc)
+        {
+            Orc o;
+            Assert::AreEqual(std::string("Orc"), o.getName());
+        }
+        TEST_METHOD(Orc_HPIsCorrect)
+        {
+            Orc o;
+            Assert::AreEqual(25, o.getHealth());
+        }
+        TEST_METHOD(Orc_StrengthIsCorrect)
+        {
+            Orc o;
+            Assert::AreEqual(10, o.getStrength());
+        }
+        TEST_METHOD(Orc_IsAlive)
+        {
+            Orc o;
+            Assert::IsTrue(o.isAlive());
+        }
+        TEST_METHOD(Orc_StrongerThanGoblin)
+        {
+            Orc o;
+            Goblin g;
+            Assert::IsTrue(o.getStrength() > g.getStrength());
+        }
+    };
+
+    TEST_CLASS(DragonTests)
+    {
+    public:
+        TEST_METHOD(Dragon_NameIsDragon)
+        {
+            Dragon d;
+            Assert::AreEqual(std::string("Dragon"), d.getName());
+        }
+        TEST_METHOD(Dragon_HPIsCorrect)
+        {
+            Dragon d;
+            Assert::AreEqual(50, d.getHealth());
+        }
+        TEST_METHOD(Dragon_StrengthIsCorrect)
+        {
+            Dragon d;
+            Assert::AreEqual(20, d.getStrength());
+        }
+        TEST_METHOD(Dragon_IsAlive)
+        {
+            Dragon d;
+            Assert::IsTrue(d.isAlive());
+        }
+        TEST_METHOD(Dragon_StrongestMonster)
+        {
+            Dragon d;
+            Orc o;
+            Goblin g;
+            Assert::IsTrue(d.getStrength() > o.getStrength());
+            Assert::IsTrue(d.getStrength() > g.getStrength());
+        }
+    };
+}
+
+// =============================================
+// COMBAT TESTS
+// =============================================
+namespace CombatTests
+{
+    TEST_CLASS(AttackHitsTests)
+    {
+    public:
+        TEST_METHOD(AttackHits_ReturnsTrueWhenRollPlusBonusMeetsAC)
+        {
+            CombatSystem cs;
+            Assert::IsTrue(cs.attackHits(10, 5, 14));  // 10+5=15 >= 14
+        }
+        TEST_METHOD(AttackHits_ReturnsFalseWhenRollPlusBonusBelowAC)
+        {
+            CombatSystem cs;
+            Assert::IsFalse(cs.attackHits(5, 3, 14));  // 5+3=8 < 14
+        }
+        TEST_METHOD(AttackHits_ReturnsTrueWhenExactlyMeetsAC)
+        {
+            CombatSystem cs;
+            Assert::IsTrue(cs.attackHits(10, 4, 14));  // 10+4=14 == 14
+        }
+    };
+
+    TEST_CLASS(CalculateDamageTests)
+    {
+    public:
+        TEST_METHOD(CalculateDamage_NeverBelowOne)
+        {
+            CombatSystem cs;
+            Assert::IsTrue(cs.calculateDamage(0, 0) >= 1);
+        }
+        TEST_METHOD(CalculateDamage_IncreasesWithBasePower)
+        {
+            CombatSystem cs;
+            Assert::IsTrue(cs.calculateDamage(10, 8) > cs.calculateDamage(1, 8));
+        }
+        TEST_METHOD(CalculateDamage_IncreasesWithRoll)
+        {
+            CombatSystem cs;
+            Assert::IsTrue(cs.calculateDamage(5, 20) > cs.calculateDamage(5, 4));
+        }
+    };
+
+    TEST_CLASS(RunCombatTests)
+    {
+    public:
+        TEST_METHOD(RunCombat_PlayerWinsAgainstWeakEnemy)
+        {
+            Character player("Hero", "Warrior", 10, 100, 14);
+            Goblin enemy;
+            Dice dice(20);
+            CombatSystem cs;
+            bool result = cs.runCombat(player, enemy, dice);
+            Assert::IsTrue(result);  // player should win with 100 HP vs Goblin 15 HP
+        }
+        TEST_METHOD(RunCombat_EnemyDefeatedAfterCombat)
+        {
+            Character player("Hero", "Warrior", 10, 100, 14);
+            Goblin enemy;
+            Dice dice(20);
+            CombatSystem cs;
+            cs.runCombat(player, enemy, dice);
+            Assert::IsFalse(enemy.isAlive());
+        }
+    };
+}
